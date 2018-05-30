@@ -1,7 +1,6 @@
 package com.hxgis.timer;
 
 import com.hxgis.common.Constant;
-import com.hxgis.model.AccessGRBData;
 import com.hxgis.model.MoapEntity.*;
 import com.hxgis.model.geojson.GeoFeatureCollection;
 import com.hxgis.util.MoapUtil;
@@ -11,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ucar.ma2.Array;
 import ucar.nc2.dataset.VariableDS;

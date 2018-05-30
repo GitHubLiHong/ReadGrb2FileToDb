@@ -79,16 +79,16 @@ public class AnalysisData {
                 if (grid.getUnitsString().equals("Pa")) {
                     gridData.setUnitStr("HPa");   //气象习惯性表达 百帕
                     scale = 0.01f;
-                } else if (grid.getUnitsString().equals("1/s")) {
+                } else if(grid.getUnitsString().equals("1/s")){
                     gridData.setUnitStr("10-5s-1");   //气象习惯性表达
                     scale = 100000;
-                } else if (grid.getUnitsString().equals("gpm")) {
+                }else if(grid.getUnitsString().equals("gpm")){
                     gridData.setUnitStr("10gpm");   //气象习惯性表达
                     scale = 0.1;
-                } else if (grid.getUnitsString().equals("kg.m-2")) {
-                    gridData.setUnitStr("mm/" + time + "h");   //气象习惯性表达
+                }else if(grid.getUnitsString().equals("kg.m-2")){
+                    gridData.setUnitStr("mm/"+time+"h");   //气象习惯性表达
 
-                } else {
+                }else {
                     gridData.setUnitStr(grid.getUnitsString());
                 }
                 gridData.setGridName(grid.getFullName());
@@ -112,7 +112,11 @@ public class AnalysisData {
                         } else {
                             value = 0.0f;
                         }
-                        dataArray[(int) ysize - i - 1][j] = value;
+                        if (yArray.getDouble(0) < yArray.getDouble(1)) {
+                            dataArray[i][j] = value;
+                        }else{
+                            dataArray[(int)ysize-i-1][j] = value;
+                        }
                     }
                 }
                 gridX = new double[(int) xsize];
@@ -144,9 +148,8 @@ public class AnalysisData {
         return gridDatas;
     }
 
-    /**
+/**
      * 按照范围裁剪格点
-     *
      * @param grid
      * @param minX
      * @param maxX
@@ -172,6 +175,7 @@ public class AnalysisData {
                     break;
                 }
             }
+
         }
 
         if (maxX >= grid.getGridX()[grid.getGridX().length - 1]) {
@@ -207,6 +211,7 @@ public class AnalysisData {
             }
         }
 
+
         int xNum = endX - startX + 1;
         int yNum = endY - startY + 1;
 
@@ -225,10 +230,10 @@ public class AnalysisData {
 
         double maxValue = -999999999.0;
         double minValue = 9999999999.0;
-        double value = 0;
+        double value=0;
         for (int i = 0; i < xNum; i++) {
             for (int j = 0; j < yNum; j++) {
-                value = grid.getGrid()[startY + j][startX + i];
+                value=grid.getGrid()[startY+j][startX+i];
                 if (value > maxValue) {
                     maxValue = value;
                 }

@@ -6,7 +6,7 @@ package com.hxgis.common;
 public class Constant {
 
     public static final double GRB2_LATMIN_HB = 26.0;//28.9
-    public static final double GRB2_LATMAX_HB = 33.45;//33.4
+    public static final double GRB2_LATMAX_HB = 34.45;//33.4
     public static final double GRB2_LNGMAX_HB = 108.65;//116.25
     public static final double GRB2_LNGMIN_HB = 97.25;//108.25
     public static final double GRB2_LNGGAP = 0.05;//0.025

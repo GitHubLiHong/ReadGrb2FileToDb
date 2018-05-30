@@ -187,6 +187,15 @@ public class FileDownloadTimer {
         }
     }
 
+
+    @RequestMapping("/aa")
+    public void test () throws  Exception{
+        Map<String, String>    map = new HashMap();
+        String str = "201805300800";
+        map.put("ER03", "201805300800.GRB2");
+        readGrbTwoToDB.parse(map,str);
+    }
+
     /*
     * 通过访问url 下载文件
     * fileUrl:请求路径

@@ -1,6 +1,5 @@
 package com.hxgis.model;
 
-import ucar.nc2.dataset.VariableDS;
 import ucar.nc2.dt.GridDatatype;
 import ucar.nc2.dt.grid.GridDataset;
 
@@ -14,8 +13,10 @@ import java.util.List;
  */
 
 public class AccessGRBData {
+
     private String filePath;
     private List<GridDatatype> grids;
+    private GridDataset dataset;
 
     public GridDataset getDataset() {
         return dataset;
@@ -25,8 +26,6 @@ public class AccessGRBData {
         this.dataset = dataset;
     }
 
-    private GridDataset dataset;
-
     public List<GridDatatype> getGrids() {
         return grids;
     }
@@ -34,6 +33,7 @@ public class AccessGRBData {
     public void setGrids(List<GridDatatype> grids) {
         this.grids = grids;
     }
+
 
     public AccessGRBData(String filePath) {
         this.filePath = filePath;
@@ -50,11 +50,6 @@ public class AccessGRBData {
         try {
             dataset = GridDataset.open(filePath);
             grids = dataset.getGrids();
-
-            for(GridDatatype gdt:grids){
-                VariableDS  a = gdt.getVariable();
-            }
-
         } catch (Exception e) {
             throw new Exception("Generate Pictures Failed" + e.getMessage());
         }

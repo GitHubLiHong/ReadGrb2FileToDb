@@ -1,6 +1,8 @@
 package com.hxgis.timer;
 
 import com.hxgis.model.AccessGRBData;
+import com.hxgis.model.AnalysisData;
+import com.hxgis.model.GridData;
 import com.hxgis.util.impl.ReadLatLonService;
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
@@ -15,6 +17,8 @@ import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import static com.hxgis.model.AnalysisData.Analysis;
 
 /**
  * Created by Li Hong on 2018/5/27 0027.
@@ -44,6 +48,7 @@ public class ReadGrbTwoToDB {
         grbData.ReadFile();
         List<GridDatatype> grids = grbData.getGrids();
         GeoGrid geoGrid = (GeoGrid) grids.get(0);
+        List<GridData> gridDatas = AnalysisData.Analysis(grids.get(0));
         boolean isTemperature = geoGrid.getUnitsString().equals("K");
         VariableDS var = geoGrid.getVariable();
 //        int times = var.getShape(0);
