@@ -74,7 +74,7 @@ public class ReadGrbTwoToDB {
         String hour = now.getHourOfDay() >= 17 ? "20" : "08";
 //        String tmpPath = rootExtDir + "/tmp";
         //String tmpPath = "/opt/data/grb2Json/tmp";
-        String tmpPath = "D:\\grb2";
+        String tmpPath = "D:\\ER03";
 
         Iterator<Map.Entry<String, String>> it = unParsingMap.entrySet().iterator();
         while (it.hasNext()) {

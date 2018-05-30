@@ -94,7 +94,7 @@ public class ReadLatLonServiceImpl implements ReadLatLonService {
                     }
                      //System.out.println(dataset[b][lonx][lony]);
                 }
-                System.out.println("我是行数"+j+"----我是每行多少数"+arr.length+"我是每行出错的数: "+c+"每行有效个数"+sum);
+                //System.out.println("我是行数"+j+"----我是每行多少数"+arr.length+"我是每行出错的数: "+c+"每行有效个数"+sum);
                 double avg = value/sum;//求平均
                 dateA = dateB;
 
@@ -111,8 +111,8 @@ public class ReadLatLonServiceImpl implements ReadLatLonService {
 
         }
 
-        System.out.println(stringBuffer.toString());
-        System.out.println(listaa.size());
+        //System.out.println(stringBuffer.toString());
+        System.out.println("预报数据"+listaa.size());
         //System.out.println("异常："+sum);
 
         jdbcTemplate.execute(stringBuffer.substring(0,stringBuffer.length()-1));

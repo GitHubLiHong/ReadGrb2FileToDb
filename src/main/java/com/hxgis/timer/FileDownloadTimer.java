@@ -42,7 +42,8 @@ public class FileDownloadTimer {
     @Scheduled(cron="0 0/5 * * * ?")
     public void Json(){
         try {
-            String url = "http://int.scqx.net/";
+            //String url = "http://int.scqx.net/";//本地调试使用
+            String url ="http://192.168.1.60/";
             String param = "id=1194&key=6b63dddaf182ee8a";
             String rtn = HttpRequest.sendGet(url, param);
 
@@ -84,7 +85,7 @@ public class FileDownloadTimer {
                         break;
                     }
                 }
-                List<String> listWfNwp = jdbcTemplate.queryForList("select distinct(sid) FROM sk_pipe WHERE sid ='"+sid+"' and st = '"+time+"'",String.class);
+                List<String> listWfNwp = jdbcTemplate.queryForList("select distinct(sid) FROM  GXQX.dbo.sk_pipe WHERE sid ='"+sid+"' and st = '"+time+"'",String.class);
                 if(listWfNwp.size() >0){
                     continue;
                 }
@@ -118,11 +119,11 @@ public class FileDownloadTimer {
                     pr24 = "0"+pr24;
                 }
                 if(gst80.length()>0){
-                    sql_sk = "insert into sk_pipe (sid,st,t,gst80,pr1,pr3,pr6,pr12,pr24,ws,wd) " +
+                    sql_sk = "insert into  GXQX.dbo.sk_pipe (sid,st,t,gst80,pr1,pr3,pr6,pr12,pr24,ws,wd) " +
                             "VALUES ('"+sid+"','"+time+"','"+t+"','"+gst80+"','"+pr1+"','"+pr3+"','"+pr6+"','"+pr12+"','"+pr24+"','"+ws+"','"+wd+"')";
                     sql_list.add(sql_sk);
                 }else {
-                    sql_sk = "insert into sk_pipe (sid,st,t,pr1,pr3,pr6,pr12,pr24,ws,wd) " +
+                    sql_sk = "insert into  GXQX.dbo.sk_pipe (sid,st,t,pr1,pr3,pr6,pr12,pr24,ws,wd) " +
                             "VALUES ('"+sid+"','"+time+"','"+t+"','"+pr1+"','"+pr3+"','"+pr6+"','"+pr12+"','"+pr24+"','"+ws+"','"+wd+"')";
                     sql_list.add(sql_sk);
                 }
@@ -150,12 +151,13 @@ public class FileDownloadTimer {
         }
     }
 
-    @Scheduled(cron="0 0 0/1 * * ? ")
-    //@RequestMapping("/aa")
+    @Scheduled(cron="0 0 0/1 * * ? ")//格点预报数据入库
+        //@RequestMapping("/aa")
     public void start() {
         Map<String,String> map = new HashMap<>();
-        String url = "http://int.scqx.net/";
-        String param = "id=1195&key=1a5c5400173bac68 ";
+        //String url = "http://int.scqx.net/";本地调试使用
+            String url ="http://192.168.1.60/";
+            String param = "id=1195&key=1a5c5400173bac68 ";
         String localpath= "D:/ER03/";
         String sType="ER03";
         String fileName = "";
