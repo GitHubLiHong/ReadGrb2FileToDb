@@ -1,6 +1,9 @@
 package com.hxgis.timer;
 
 
+import com.hxgis.model.AccessGRBData;
+import com.hxgis.model.AnalysisData;
+import com.hxgis.model.GridData;
 import com.hxgis.util.HttpRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,6 +13,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ucar.nc2.dt.GridDatatype;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -241,5 +245,31 @@ public class FileDownloadTimer {
         }
 
     }
+
+
+
+    /**
+     * 解析格点文件，获取格点数据
+     *
+     * @param filePath
+     * @return
+     * @throws Exception
+     */
+    public static List<GridData> getGridDataList(String filePath) {
+        AccessGRBData grbData = new AccessGRBData(filePath);
+        List<GridData> gridDataList = null;
+        try {
+            grbData.ReadFile();
+            GridDatatype gridDatatype = grbData.getGrids().get(0);
+            gridDataList = AnalysisData.Analysis(gridDatatype);
+        } catch (Exception ex) {
+           //logger.error("解析格点文件失败！报错信息：" + ex.getMessage());
+            System.out.println("解析格点文件失败！报错信息：" + ex.getMessage());
+        } finally {
+            grbData.Dispose();
+        }
+        return gridDataList;
+    }
+
 
 }
